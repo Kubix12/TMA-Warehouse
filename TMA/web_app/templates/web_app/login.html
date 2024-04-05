@@ -1,0 +1,36 @@
+{% extends 'web_app/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    <body>
+
+        <div class="container bg-light shadow-md p-5 form-layout">
+
+            <h3> Login to your account </h3>
+
+            <hr>
+            <form method="POST" autocomplete="off">
+                {% csrf_token %}
+
+                <label for="username">Username:</label>
+                <input type="text" name="username" id="username" required><br>
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" required><br>
+
+                <br>
+                <button type="submit" class="btn btn-primary w-100 btn-block p-2"> Login &nbsp; <i class="fa fa-key" aria-hidden="true"></i> </button>
+
+
+            </form>
+
+            <br>
+
+
+        </div>
+
+        <br>
+
+    </body>
+
+{% endblock %}
