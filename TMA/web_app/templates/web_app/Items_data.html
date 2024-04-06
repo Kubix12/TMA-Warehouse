@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Items List</title>
+</head>
+<body>
+    <h1>Items List</h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Item ID</th>
+                <th scope="col">Item Group</th>
+                <th scope="col">Unit of Measurement</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price Without VAT</th>
+                <th scope="col">Status</th>
+                <th scope="col">Storage Location</th>
+                <th scope="col">Contact Person</th>
+                <th scope="col">Photo</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td>{{ item.item_id }}</td>
+                <td>{{ item.item_group }}</td>
+                <td>{{ item.unit_of_measurement }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.price_without_vat }}</td>
+                <td>{{ item.status }}</td>
+                <td>{{ item.storage_location }}</td>
+                <td>{{ item.contact_person }}</td>
+                <td><img src="{{ item.photo.url }}" alt="Photo" width="100"></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
