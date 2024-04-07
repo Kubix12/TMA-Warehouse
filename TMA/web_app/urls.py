@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import items_list
+from .views import items_list, items_list_coordinator
 
 urlpatterns = [
 
@@ -10,5 +10,7 @@ urlpatterns = [
     path('employee_dashboard', views.employee_dashboard, name="employee_dashboard"),
     path('user-logout', views.user_logout, name="user-logout"),
     path('Items', items_list, name='items_list'),
-    path('Button', views.open_windows, name='order_button')
+    path('Button', views.open_windows, name='order_button'),
+    path('Items_coordinator', items_list_coordinator, name='items_list_coordinator'),
+
 ]

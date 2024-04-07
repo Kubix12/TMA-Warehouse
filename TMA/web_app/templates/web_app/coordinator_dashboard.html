@@ -1,4 +1,9 @@
 {% extends 'web_app/base.html' %}
 {% block content %}
-    <h1> Welcome coordinator </h1>
+    <div class="text-center">
+        <h1>Welcome coordinator</h1>
+        <a href="{% url 'items_list_coordinator' %}" class="btn btn-primary btn-lg active mt-3" role="button" aria-pressed="true">Items List</a>
+        <a href="{% url '' %}" class="btn btn-primary btn-lg active mt-3" role="button" aria-pressed="true">Request</a>
+    </div>
+
 {% endblock %}

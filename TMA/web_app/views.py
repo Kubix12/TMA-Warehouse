@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from web_app.forms import CreateUserForm, LoginForm
 from django.contrib.auth.models import auth
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from .models import Item
 from django.contrib import messages
 
@@ -17,7 +17,6 @@ def user_login(request):
     form = LoginForm()
     if request.method == "POST":
         form = LoginForm(request, data=request.POST)
-
         if form.is_valid():
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
@@ -56,6 +55,12 @@ def user_logout(request):
 def items_list(request):
     items = Item.objects.all()
     return render(request, 'web_app/Items_data.html', {'items': items})
+
+
+@login_required(login_url="login")
+def items_list_coordinator(request):
+    items_coordinator = Item.objects.all()
+    return render(request, 'web_app/Items_data_coordinator.html', {'items': items_coordinator})
 
 
 @login_required(login_url="login")
