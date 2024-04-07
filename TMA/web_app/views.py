@@ -4,6 +4,7 @@ from django.contrib.auth.models import auth
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from .models import Item
+from django.contrib import messages
 
 
 # -- Home page --
@@ -54,5 +55,4 @@ def user_logout(request):
 @login_required(login_url="login")
 def items_list(request):
     items = Item.objects.all()
-    print(items)
     return render(request, 'web_app/Items_data.html', {'items': items})
