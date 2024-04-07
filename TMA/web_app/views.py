@@ -56,3 +56,8 @@ def user_logout(request):
 def items_list(request):
     items = Item.objects.all()
     return render(request, 'web_app/Items_data.html', {'items': items})
+
+
+@login_required(login_url="login")
+def open_windows(request):
+    return render(request, 'web_app/order_button.html')
