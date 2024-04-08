@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import items_list, items_list_coordinator
+from .views import items_list, items_list_coordinator, request_list, submit_request
 
 urlpatterns = [
 
@@ -12,5 +12,7 @@ urlpatterns = [
     path('Items', items_list, name='items_list'),
     path('Button', views.open_windows, name='order_button'),
     path('Items_coordinator', items_list_coordinator, name='items_list_coordinator'),
+    path('request_data', request_list, name='request_data'),
+    path('submit_request', submit_request, name='submit_request'),
 
 ]

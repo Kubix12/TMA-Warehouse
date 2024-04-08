@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
-from web_app.forms import CreateUserForm, LoginForm
+from web_app.forms import CreateUserForm, LoginForm, RequestForm
 from django.contrib.auth.models import auth
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required, user_passes_test
-from .models import Item
+from .models import Item, Request
 from django.contrib import messages
+
 
 
 # -- Home page --
@@ -61,6 +62,32 @@ def items_list(request):
 def items_list_coordinator(request):
     items_coordinator = Item.objects.all()
     return render(request, 'web_app/Items_data_coordinator.html', {'items': items_coordinator})
+
+
+@login_required(login_url="login")
+def request_list(request):
+    requests = Request.objects.all()
+    return render(request, 'web_app/request_data.html', {'requests': requests})
+
+
+@login_required(login_url="login")
+def submit_request(request):
+    print("Inside submit_request view function")  # Debug statement
+    if request.method == "POST":
+        print("POST request received")  # Debug statement
+        form = RequestForm(request.POST)
+        print("Form instantiated")  # Debug statement
+        if form.is_valid():
+            print("Form is valid")  # Debug statement
+            form.save()
+            return redirect('items_list')
+        else:
+            print("Form is invalid")  # Debug statement
+            print(form.errors)  # Print form errors to console for debugging
+    else:
+        print("GET request received")  # Debug statement
+        form = RequestForm()
+    return render(request, 'web_app/submit_request.html', {'form': form})
 
 
 @login_required(login_url="login")

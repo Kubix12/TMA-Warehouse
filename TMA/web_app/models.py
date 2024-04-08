@@ -16,3 +16,17 @@ class Item(models.Model):
 
     class Meta:
         db_table = 'web_app_item'
+
+
+class Request(models.Model):
+    request_id = models.AutoField(primary_key=True)
+    employee_name = models.TextField()
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    unit_of_measurement = models.CharField(max_length=255)
+    quantity = models.DecimalField(max_digits=10, decimal_places=2)
+    price_without_vat = models.DecimalField(max_digits=10, decimal_places=2)
+    comment = models.TextField(blank=True, null=True)
+    status = models.CharField(max_length=50, default='New')
+
+    class Meta:
+        db_table = 'web_app_requests'
