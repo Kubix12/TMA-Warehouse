@@ -72,20 +72,14 @@ def request_list(request):
 
 @login_required(login_url="login")
 def submit_request(request):
-    print("Inside submit_request view function")  # Debug statement
     if request.method == "POST":
-        print("POST request received")  # Debug statement
         form = RequestForm(request.POST)
-        print("Form instantiated")  # Debug statement
         if form.is_valid():
-            print("Form is valid")  # Debug statement
             form.save()
             return redirect('items_list')
         else:
-            print("Form is invalid")  # Debug statement
-            print(form.errors)  # Print form errors to console for debugging
+            print(form.errors)
     else:
-        print("GET request received")  # Debug statement
         form = RequestForm()
     return render(request, 'web_app/submit_request.html', {'form': form})
 
