@@ -7,7 +7,6 @@ from .models import Item, Request
 from django.contrib import messages
 
 
-
 # -- Home page --
 def home(request):
     return render(request, 'web_app/index.html')
